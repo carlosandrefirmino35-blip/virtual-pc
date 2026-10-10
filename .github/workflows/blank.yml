@@ -1,0 +1,74 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PC Virtual</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#0878c9;color:white;font-family:Arial}
+header{padding:20px;background:#07559b}
+main{padding:20px}
+.desktop{height:65vh;padding:20px}
+.icon{display:inline-block;padding:15px;text-align:center}
+.icon button{display:block;width:90px;padding:15px;
+border:0;border-radius:8px;background:#fff;color:#222}
+.taskbar{position:fixed;bottom:0;background:#222;
+width:100%;padding:12px;display:flex;gap:15px}
+a{color:white}
+.window{background:white;color:#222;padding:15px;
+border-radius:10px;margin-top:15px}
+</style>
+</head>
+<body>
+<header><h2>🖥️ Meu PC Virtual</h2>
+<p>Área de trabalho móvel</p></header>
+<main class="desktop">
+<div class="icon">
+<button onclick="abrir('Navegador')">🌐</button>
+Navegador
+</div>
+<div class="icon">
+<button onclick="abrir('Jogos')">🎮</button>
+Jogos
+</div>
+<div class="icon">
+<button onclick="abrir('Arquivos')">📁</button>
+Arquivos
+</div>
+<div id="janela"></div>
+</main>
+<div class="taskbar">
+<span>🪟 Iniciar</span>
+<span>📶 Online</span>
+<span id="hora"></span>
+</div>
+<script>
+function abrir(nome){
+let conteudo='';
+if(nome==='Navegador'){
+conteudo='<h3>Navegador</h3><a href="https://www.google.com">Abrir Google</a>';
+}
+if(nome==='Jogos'){
+conteudo='<h3>Jogos</h3><a href="https://store.steampowered.com">Steam</a><br><a href="https://www.xbox.com/play">Xbox Cloud Gaming</a>';
+}
+if(nome==='Arquivos'){
+conteudo='<h3>Arquivos</h3><p>Área de arquivos demonstrativa.</p>';
+}
+document.getElementById('janela').innerHTML=
+'<div class="window">'+conteudo+
+'<br><button onclick="fechar()">Fechar</button></div>';
+}
+function fechar(){
+document.getElementById('janela').innerHTML='';
+}
+function atualizarHora(){
+document.getElementById('hora').textContent=
+new Date().toLocaleTimeString('pt-BR');
+}
+atualizarHora();
+setInterval(atualizarHora,1000);
+</script>
+</body>
+</html>
